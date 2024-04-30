@@ -20,7 +20,7 @@
 <link rel="stylesheet" href="rs-plugin/css/settings.css">
 <link href="css/style.css" rel="stylesheet"  id="colors">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&amp;family=Open+Sans:wght@300;400;600;700;800&amp;display=swap" rel="stylesheet">
-<title>Sitio de Abogacia</title>
+<title>Giangreco & Asociados | Estudio Juridico</title>
 </head>
 <body>
 
@@ -29,7 +29,7 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-6 col-md-6">
-        <p><i class="fas fa-envelope"></i> Info@abogados.com</p>
+        <p><i class="fas fa-envelope"></i> <a href="mailto:estudiomgiangreco@hotmail.com" style="text-decoration:none;color:#FFF;">estudiomgiangreco@hotmail.com</a></p>
       </div>
       <div class="col-lg-6 col-md-6">
         <div class="social-media"> <span>Siguenos en:</span>
@@ -60,10 +60,12 @@
         <div class="col-lg-8 col-md-12">
           <ul class="header_info">
             <li>
-              <div class="conInfo phonewrp"><span>Contactenos</span> <a href="tel:7704251234">(770) 123 4567</a></div>
+              <div class="conInfo phonewrp"><span>Contactenos</span> <a href="tel:541143717680">(011) 4371-7680</a><br>
+			  <a href="tel:541144601256">(011) 4460-1256</a></div>
             </li>
             <li>
-              <div class="conInfo addressWrp"><span>Encuentranos en</span> 123 Lorem Ipsum, CABA - Argentina</div>
+              <div class="conInfo addressWrp"><span>Encuentranos en</span> Parana 383 - Piso 2° E - CABA<br>
+			  Triunvirato 1507 - RAMOS MEJIA</div>
             </li>
           </ul>
         </div>
@@ -286,7 +288,13 @@
     </div>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In iaculis, quam non suscipit tincidunt, ex urna interdum odio, at convallis enim est et mi. Aliquam pharetra fringilla turpis, id luctus tellus porttitor eget.</p>
     <div class="callText">Contactenos! Tenemos amplia disponibilidad horaria.</div>
-    <div class="phonewrp"><a href="#">(770) 132 4657</a></div>
+		<div class="phonewrp">
+			<a href="tel:541143717680">(011) 4371-7680</a>
+		</div>
+			<br>
+		<div class="phonewrp">
+			<a href="tel:541144601256">(011) 4460-1256</a>
+		</div>
   </div>
 </div>
 <!-- Advice End --> 
@@ -302,26 +310,59 @@
           <div class="title">
             <h1>Formulario de Contacto</h1>
           </div>
-          <p>Donec scelerisque libero eget mauris fermentum, vitae maximus mauris egestas. Sed eleifend placerat nulla vehicula odio in rhoncus.</p>
-          <form class="form" action="#">
-            <div class="form-group">
-              <input name="name" type="text" class="form-control" placeholder="Nombre">
-            </div>
-            <div class="form-group">
-              <input name="email" type="email" class="form-control" placeholder="E-mail">
-            </div>
-            <div class="form-group">
-              <input name="subject" type="text" class="form-control" placeholder="Asunto">
-            </div>
-            <div class="form-group">
-              <textarea name="message" class="form-control" placeholder="Mensaje"></textarea>
-            </div>
-            <div class="form-group">
-              <div class="button">
-                <button type="submit" class="btn primary">Enviar</button>
-              </div>
-            </div>
-          </form>
+          <p>Escriba su consulta aqui para que podamos contactarlo rapidamente y asesorarlo en lo que necesite.</p>
+			<form class="form" id="whatsappForm">
+				<div class="form-group">
+					<input name="name" id="name" type="text" class="form-control" placeholder="Nombre">
+				</div>
+				<div class="form-group">
+					<input name="email" id="email" type="email" class="form-control" placeholder="E-mail">
+				</div>
+				<div class="form-group">
+					<input name="subject" id="subject" type="text" class="form-control" placeholder="Asunto">
+				</div>
+				<div class="form-group">
+					<textarea name="message" id="message" class="form-control" placeholder="Mensaje"></textarea>
+				</div>
+				<div class="form-group">
+					<div class="button">
+						<button type="button" class="btn primary" onclick="sendWhatsApp()">Enviar</button>
+					</div>
+				</div>
+			</form>
+
+			<script>
+				function sendWhatsApp() {
+					// Obtener los valores del formulario
+					var name = document.getElementById('name').value;
+					var email = document.getElementById('email').value;
+					var subject = document.getElementById('subject').value;
+					var message = document.getElementById('message').value;
+
+					// Construir el enlace de WhatsApp con los datos del formulario
+					var phoneNumber = '541150234789'; // Número de teléfono de destino
+					var text = `Hola que tal, mi nombre es: _*${name}*_\n\n`;
+					text += `Me comunico por este asunto:\n_*${subject}*_\n\n`;
+					text += `Esta es la consulta que tengo:\n${message}\n\n`;
+					text += `Le dejo mi contacto telefónico y mi mail a continuación:\n_*${email}*_`;
+
+					// Codificar el texto para URL
+					text = encodeURIComponent(text);
+
+					// Construir el enlace de WhatsApp
+					var whatsappLink = `https://web.whatsapp.com/send?phone=${phoneNumber}&text=${text}`;
+
+					// Abrir el enlace en una nueva ventana
+					window.open(whatsappLink);
+					
+					// Recargar la página después de 2 segundos (2000 milisegundos)
+					setTimeout(function() {
+						location.reload(); // Recargar la página
+					}, 2000); // Tiempo en milisegundos (ejemplo: 2000 ms = 2 segundos)
+				}
+			</script>
+
+		  
         </div>
       </div>
       <div class="col-lg-6">
@@ -333,19 +374,20 @@
             <li>
               <div class="contact_box">
                 <div class="icon"><img alt="" src="images/adress.png"> </div>
-                <p>Estudio <span>123 Lorem Ipsum, CABA - Argentina</span></p>
+                <p>Estudio en:<span>Parana 383 - Piso 2° E | CABA<br>Triunvirato 1507 | RAMOS MEJIA</span></p>
               </div>
             </li>
             <li>
               <div class="contact_box">
                 <div class="icon"><img alt="" src="images/email_icon.png"> </div>
-                <p>E-mail<span> <a href="mailto:info@abogados.com">info@abogados.com</a></span></p>
+                <p>E-mail<span> <a href="mailto:estudiomgiangreco@hotmail.com">estudiomgiangreco@hotmail.com</a></span></p>
               </div>
             </li>
             <li>
               <div class="contact_box">
                 <div class="icon"><img alt="" src="images/phone.png"> </div>
-                <p>Telefono<span> <a href="tel:7701234567">(770) 123 4567</a></span></p>
+                <p>Telefonos<span> <a href="tel:541143717680">(011) 4371-7680</a><br>
+			  <a href="tel:541144601256">(011) 4460-1256</a></span></p>
               </div>
             </li>
             <li>
@@ -412,7 +454,7 @@
     <div class="copyright-wrap">
       <div class="row">
         <div class="col-lg-6">
-          <div class="copyright">Copyright  © 2024 Atlantalawyers.</div>
+          <div class="copyright">Copyright  © 2024 Giangreco & Asociados</div>
         </div>
       </div>
     </div>
