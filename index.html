@@ -311,56 +311,63 @@
             <h1>Formulario de Contacto</h1>
           </div>
           <p>Escriba su consulta aqui para que podamos contactarlo rapidamente y asesorarlo en lo que necesite.</p>
-			<form class="form" id="whatsappForm">
+			<form class="form" onsubmit="sendWhatsApp(); return false;">
 				<div class="form-group">
-					<input name="name" id="name" type="text" class="form-control" placeholder="Nombre">
+					<input id="name" type="text" class="form-control" placeholder="Nombre">
 				</div>
 				<div class="form-group">
-					<input name="email" id="email" type="email" class="form-control" placeholder="E-mail">
+					<input id="email" type="email" class="form-control" placeholder="E-mail">
 				</div>
 				<div class="form-group">
-					<input name="subject" id="subject" type="text" class="form-control" placeholder="Asunto">
+					<input id="subject" type="text" class="form-control" placeholder="Asunto">
 				</div>
 				<div class="form-group">
-					<textarea name="message" id="message" class="form-control" placeholder="Mensaje"></textarea>
+					<textarea id="message" class="form-control" placeholder="Mensaje"></textarea>
 				</div>
 				<div class="form-group">
 					<div class="button">
-						<button type="button" class="btn primary" onclick="sendWhatsApp()">Enviar</button>
+						<button type="submit" class="btn primary">Enviar</button>
 					</div>
 				</div>
 			</form>
 
 			<script>
-				function sendWhatsApp() {
-					// Obtener los valores del formulario
-					var name = document.getElementById('name').value;
-					var email = document.getElementById('email').value;
-					var subject = document.getElementById('subject').value;
-					var message = document.getElementById('message').value;
+			// Función para detectar si el usuario está en un dispositivo móvil
+			function isMobileDevice() {
+				return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+			}
 
-					// Construir el enlace de WhatsApp con los datos del formulario
-					var phoneNumber = '541150234789'; // Número de teléfono de destino
-					var text = `Hola que tal, mi nombre es: _*${name}*_\n\n`;
-					text += `Me comunico por este asunto:\n_*${subject}*_\n\n`;
-					text += `Esta es la consulta que tengo:\n${message}\n\n`;
-					text += `Le dejo mi contacto telefónico y mi mail a continuación:\n_*${email}*_`;
+			// Función para enviar el mensaje de WhatsApp
+			function sendWhatsApp() {
+				// Obtener los valores del formulario
+				var name = document.getElementById('name').value;
+				var email = document.getElementById('email').value;
+				var subject = document.getElementById('subject').value;
+				var message = document.getElementById('message').value;
 
-					// Codificar el texto para URL
-					text = encodeURIComponent(text);
+				// Construir el mensaje de WhatsApp con los datos del formulario
+				var messageText = `Hola que tal, mi nombre es: _*${name}*_\n\n`;
+				messageText += `Me comunico por este asunto:\n_*${subject}*_\n\n`;
+				messageText += `Esta es la consulta que tengo:\n${message}\n\n`;
+				messageText += `Le dejo mi contacto telefónico y mi correo a continuación:\n_*${email}*_`;
 
-					// Construir el enlace de WhatsApp
-					var whatsappLink = `https://web.whatsapp.com/send?phone=${phoneNumber}&text=${text}`;
+				// Obtener el número de teléfono de destino
+				var phoneNumber = '541150234789'; // Reemplazar con el número de teléfono deseado
 
-					// Abrir el enlace en una nueva ventana
-					window.open(whatsappLink);
-					
-					// Recargar la página después de 2 segundos (2000 milisegundos)
-					setTimeout(function() {
-						location.reload(); // Recargar la página
-					}, 2000); // Tiempo en milisegundos (ejemplo: 2000 ms = 2 segundos)
-				}
-			</script>
+				// Construir el enlace de WhatsApp con el mensaje de texto codificado
+				var whatsappLink = isMobileDevice() ?
+					`https://wa.me/${phoneNumber}?text=${encodeURIComponent(messageText)}` :
+					`https://web.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(messageText)}`;
+
+				// Redirigir a la URL de WhatsApp
+				window.location.href = whatsappLink;
+
+				// Recargar la página después de 2 segundos (2000 milisegundos)
+				setTimeout(function() {
+					location.reload(); // Recargar la página
+				}, 2000); // Tiempo en milisegundos (ejemplo: 2000 ms = 2 segundos)
+			}
+		</script>
 
 		  
         </div>
